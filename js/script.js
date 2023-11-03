@@ -3,7 +3,7 @@ let form = document.getElementById('addForm')
 let employees = document.getElementById('employees')
 
 // SET A COUNT VARIABLE TO DISPLAY NEXT TO EMPLOYEES HEADER
-let empCount
+let empCount1
 
 // ADD EMPLOYEE
 form.addEventListener('submit', (e) => {
@@ -36,17 +36,36 @@ form.addEventListener('submit', (e) => {
     let employeeDeptCell = row.insertCell(4)
     let employeeDept = document.createTextNode(department)
     employeeDeptCell.appendChild(employeeDept)
- 
-
     
     // CREATE THE DELETE BUTTON
+    let deleteCell = row.insertCell(5)
+    let deleteBtn = document.createElement('button')
+    deleteBtn.className = 'btn btn-danger btn-sm float-end delete'
+    let textDelete = document.createTextNode('X')
+    deleteBtn.appendChild(textDelete)
+    deleteCell.appendChild(deleteBtn)
 
     // RESET THE FORM
     form.reset()
+
     // SET FOCUS BACK TO THE ID TEXT BOX
 
-    // INCREMENENT THE NUMBER OF EMPLOYEES IN THE TABLE
 
+    // INCREMENENT THE NUMBER OF EMPLOYEES IN THE TABLE
+    empCount1 = document.getElementById("employees").rows.length - 1
+    empCount.innerHTML = `Total ${empCount1.toFixed()}`
 })
 
 // DELETE EMPLOYEE
+employees.addEventListener('click', (e) => {
+    // CHECK AND SEE IF THE DELETE BUTTON WAS CLICKED
+    if (e.target.classList.contains('delete')) {
+        // DISPLAY CONFIRMATION OF THE DELETE TO THE USER
+        if (confirm('Are you sure you want to delete this employee?')) {
+            // REMOVE THE SELECTED ROW
+            employees.deleteRow(e.target.parentNode.parentNode.rowIndex)
+        }
+    }
+    empCount1 = document.getElementById("employees").rows.length - 1
+    empCount.innerHTML = `Total ${empCount1}`
+})
