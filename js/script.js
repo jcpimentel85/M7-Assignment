@@ -54,6 +54,7 @@ form.addEventListener('submit', (e) => {
     // INCREMENENT THE NUMBER OF EMPLOYEES IN THE TABLE
     empCount1 = document.getElementById("employees").rows.length - 1
     empCount.innerHTML = `Total ${empCount1.toFixed()}`
+   // $('id').focus()
 })
 
 // DELETE EMPLOYEE
